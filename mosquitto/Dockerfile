@@ -1,7 +1,5 @@
-FROM debian:jessie
-
-RUN apt-get update && apt-get install -y mosquitto
+FROM gliderlabs/alpine:edge
+RUN apk --update add mosquitto
 ADD mosquitto.conf /etc/mosquitto/mosquitto.conf
-EXPOSE 1883
 ENTRYPOINT ["mosquitto"]
 CMD ["-c", "/etc/mosquitto/mosquitto.conf"]
