@@ -1,6 +1,7 @@
 FROM debian:jessie
 
 COPY *.sh /build/
+ENV COMMIT 19bd6df742e2a437b46eb69eb85e597135ecce8b
 
 RUN groupadd -g 1000 docker && useradd docker -u 1000 -g 1000 -s /bin/bash --no-create-home
 
