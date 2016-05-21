@@ -1,7 +1,7 @@
-FROM base/archlinux:2014.07.03
-
-RUN pacman -Sy --needed --noconfirm darkhttpd
-RUN curl -L https://github.com/binarybucks/homA/archive/master.tar.gz | tar xz
-ADD entrypoint.sh /
-
-ENTRYPOINT ["/entrypoint.sh"]
+FROM gliderlabs/alpine:3.1
+RUN ["apk", "--update", "add", "darkhttpd"]
+ADD https://github.com/bagder/ca-bundle/raw/master/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+ADD https://github.com/simonvanderveldt/getext/releases/download/v0.1.0/getext /usr/bin/
+RUN ["chmod", "+x", "/usr/bin/getext"]
+RUN ["getext", "https://github.com/binarybucks/homA/archive/master.tar.gz"]
+ENTRYPOINT ["darkhttpd", "/homA-master/interfaces/webinterface"]
