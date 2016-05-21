@@ -1,5 +1,4 @@
-FROM gliderlabs/alpine:3.1
-RUN ["apk", "--update", "add", "darkhttpd"]
+FROM simonvanderveldt/darkhttpd
 ADD https://github.com/bagder/ca-bundle/raw/master/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
 ADD https://github.com/simonvanderveldt/getext/releases/download/v0.1.0/getext /usr/bin/
 RUN ["chmod", "+x", "/usr/bin/getext"]
