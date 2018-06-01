@@ -1,5 +1,5 @@
-FROM gliderlabs/alpine:edge
-RUN apk --update add mosquitto
-ADD mosquitto.conf /etc/mosquitto/mosquitto.conf
+FROM alpine:3.7
+RUN apk add --no-cache mosquitto
+COPY mosquitto.conf /etc/mosquitto/mosquitto.conf
 ENTRYPOINT ["mosquitto"]
 CMD ["-c", "/etc/mosquitto/mosquitto.conf"]
